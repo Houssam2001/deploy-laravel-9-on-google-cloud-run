@@ -8,11 +8,11 @@ COPY docker/nginx.conf /etc/nginx/nginx.conf
 
 RUN mkdir -p /app
 COPY . /app
-COPY ./src /app
+COPY ./All4Ai /app
 
 RUN sh -c "wget http://getcomposer.org/composer.phar && chmod a+x composer.phar && mv composer.phar /usr/local/bin/composer"
 RUN cd /app && \
-    /usr/local/bin/composer install --no-dev
+    /usr/local/bin/composer install --no-dev --ignore-platform-req=ext-bcmath
 
 RUN chown -R www-data: /app
 
